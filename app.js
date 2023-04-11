@@ -25,7 +25,7 @@ const baseRoute = "/api/v1/";
 app.use(baseRoute, router);
 // app.use("/api/auth", router);
 // app.use("/api/users", userRoute);
-app.use("/api/posts", transactionRoute);
+app.use("/api/recipt", transactionRoute);
 // app.use("/api/categories", categoryRoute);
 // app.use("/api/comments", commentsRoute);
 app.use(baseRoute, (req, res) => {
