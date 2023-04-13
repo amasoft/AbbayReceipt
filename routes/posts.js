@@ -69,26 +69,34 @@ router.get("/", async (req, res) => {
 
 router.get("/:transactionId", async (req, res) => {
   const { transactionId } = req.params;
-  console.log("details id" + transactionId);
-  try {
-    const getSingleReceipts = await Transaction.findOne({
-      transactionId: transactionId,
-    });
-    if (getSingleReceipts) {
-      //send data to frontend
-      res.status(200).json({
-        status: 200,
-        message: "Receipt succesfully Retrieved!",
-        data: getSingleReceipts,
+  const apiKey = req.headers;
+  console.log("apiKey id" + JSON.stringify(apiKey));
+  if (apiKey.apikey === "pdxfGxFDYuTRt633jKi230MQUT785PkR") {
+    try {
+      const getSingleReceipts = await Transaction.findOne({
+        transactionId: transactionId,
       });
-      // res.sendFile(path.join(__dirname, "..", "build", "index.html"));
+      if (getSingleReceipts) {
+        //send data to frontend
+        res.status(200).json({
+          status: 200,
+          message: "Receipt succesfully Retrieved!",
+          data: getSingleReceipts,
+        });
+        // res.sendFile(path.join(__dirname, "..", "build", "index.html"));
+      }
+    } catch (err) {
+      // res.status(500).json(err);
+      console.log("error getting receipts " + err);
+      res.status(500).json({
+        message: "error getting receipt",
+        error: err,
+      });
     }
-  } catch (err) {
-    // res.status(500).json(err);
-    console.log("error getting receipts " + err);
+  } else {
     res.status(500).json({
-      message: "error getting receipt",
-      error: err,
+      message: "Invalid Api Key",
+      error: "Invalid Api key",
     });
   }
 });
