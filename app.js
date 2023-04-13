@@ -1,20 +1,14 @@
 // imports
 const express = require("express");
 const app = express();
-const router = require("./modules");
 const dotenv = require("dotenv");
-const authRoute = require("./routes/auth");
-const userRoute = require("./routes/users");
 const transactionRoute = require("./routes/posts");
-const categoryRoute = require("./routes/categories");
-const commentsRoute = require("./routes/comments");
 const cors = require("cors");
-const multer = require("multer");
 const path = require("path");
-
+app.use(express.static(path.join(__dirname, "..", "build")));
+app.use(express.static("public"));
 //middlewares
 app.use(cors({ origin: true }));
-app.use("/images", express.static(path.join(__dirname, "/images")));
 app.use(express.json());
 var bodyParser = require("body-parser");
 app.use(bodyParser.json());
@@ -22,23 +16,9 @@ dotenv.config();
 dotenv.config({ path: "./config.env" });
 
 const baseRoute = "/api/v1/";
-app.use(baseRoute, router);
-// app.use("/api/auth", router);
-// app.use("/api/users", userRoute);
-app.use("/api/recipt", transactionRoute);
-// app.use("/api/categories", categoryRoute);
-// app.use("/api/comments", commentsRoute);
+app.use("/api/v1/receipt", transactionRoute);
 app.use(baseRoute, (req, res) => {
   res.send("welcome from router folder");
 });
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "images");
-  },
-  filename: (req, file, cb) => {
-    // cb(null,req.body.name)
-    cb(null, req.body.name);
-  },
-});
 module.exports = app;

@@ -7,7 +7,7 @@
     "start": "nodemon server.js",
     "start:prod": "Set NODE_ENV=production & node server.js"
   },
-  "author": "arinze",
+  "author": "AbbayMortage",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
