@@ -7,37 +7,48 @@ const path = require("path");
 router.post("/", async (req, res) => {
   console.log("headers");
   console.log(req.body.transactionId);
-  const AddTransaction = new Transaction(req.body);
-  try {
-    //check if transaction exist
-    // const getReceipt = await Transaction.find({
-    //   transactionId: req.body.transactionId,
-    // });
-    // console.log("getrecipt");
-    // // console.log(getReceipt._id);
-    // if (getReceipt) {
-    //   console.log("receipt already exist");
-    //   return res.status(201).json({
-    //     message: "receipt already exist",
-    //     status: 201,
-    //   });
-    // }
-    const savedtransaction = await AddTransaction.save();
-    if (savedtransaction) {
-      //send data to frontend
-      res.status(200).json({
-        status: 200,
-        message: "transaction Receipt succesfully Saved!",
-        data: savedtransaction,
+  const apiKey = req.headers;
+
+  if (apiKey.apikey === "pdxfGxFDYuTRt633jKi230MQUT785PkR") {
+    const AddTransaction = new Transaction(req.body);
+    try {
+      const AddTransaction = new Transaction(req.body);
+
+      //check if transaction exist
+      // const getReceipt = await Transaction.find({
+      //   transactionId: req.body.transactionId,
+      // });
+      // console.log("getrecipt");
+      // // console.log(getReceipt._id);
+      // if (getReceipt) {
+      //   console.log("receipt already exist");
+      //   return res.status(201).json({
+      //     message: "receipt already exist",
+      //     status: 201,
+      //   });
+      // }
+      const savedtransaction = await AddTransaction.save();
+      if (savedtransaction) {
+        //send data to frontend
+        res.status(200).json({
+          status: 200,
+          message: "transaction Receipt succesfully Saved!",
+          data: savedtransaction,
+        });
+        // res.sendFile(path.join(__dirname, "..", "build", "index.html"));
+      }
+    } catch (err) {
+      // res.status(500).json(err);
+      console.log("error occured " + err);
+      res.status(500).json({
+        message: "error saving Receipt",
+        error: err,
       });
-      // res.sendFile(path.join(__dirname, "..", "build", "index.html"));
     }
-  } catch (err) {
-    // res.status(500).json(err);
-    console.log("error occured " + err);
+  } else {
     res.status(500).json({
-      message: "error saving Receipt",
-      error: err,
+      message: "Invalid Api Key",
+      error: "Invalid Api key",
     });
   }
 });
