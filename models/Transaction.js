@@ -40,6 +40,18 @@ const receiptSchema = new mongoose.Schema(
       type: String,
       required: [true, "please provide the amount in Numbers"],
     },
+    Currency: {
+      type: String,
+      required: [true, "please provide the currency"],
+    },
+    depositorName: {
+      type: String,
+      required: [true, "please provide the depositor Name"],
+    },
+    tellerId: {
+      type: String,
+      required: [true, "please provide the tellerId"],
+    },
   },
   {
     timestamps: true,
