@@ -33,6 +33,7 @@ router.post("/", async (req, res) => {
         res.status(200).json({
           status: 200,
           message: "transaction Receipt succesfully Saved!",
+          url: `https://ambprintsol.netlify.app/id=${savedtransaction.transactionId}`,
           data: savedtransaction,
         });
         // res.sendFile(path.join(__dirname, "..", "build", "index.html"));
