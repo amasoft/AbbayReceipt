@@ -3,7 +3,7 @@ const receiptSchema = new mongoose.Schema(
   {
     branchID: {
       type: String,
-      required: [true, "please provide branch id"],
+      // required: [true, "please provide branch id"],
     },
     branchName: {
       type: String,

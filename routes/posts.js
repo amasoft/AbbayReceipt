@@ -2,38 +2,59 @@ const router = require("express").Router();
 const { constrainedMemory } = require("process");
 const Transaction = require("../models/Transaction");
 const path = require("path");
+const { check, validationResult } = require("express-validator");
 
-//reate post
-router.post("/", async (req, res) => {
-  console.log("headers");
-  console.log(req.body.transactionId);
+var transValidate = [
+  check("branchID", "branchID value is missing").notEmpty(),
+  check("branchName", "branchName value is missing").notEmpty(),
+  check("transactionId", "transactionId value is missing")
+    .notEmpty()
+    .isLength({ min: 12, max: 12 })
+    .withMessage("transactionId must be  12 numbers"),
+  check("transactionDate", "transactionDate value is missing").notEmpty(),
+  check("accountNumber", "accountNumber value is missing").notEmpty(),
+  check("accountName", "accountName value is missing").notEmpty(),
+  check("transactionDescription", "accountName value is missing").notEmpty(),
+  check("amountInWords", "amountInWords value is missing").notEmpty(),
+  check("amountInNumbers", "amountInNumbers value is missing").notEmpty(),
+  check("tellerId", "tellerId value is missing").notEmpty(),
+  check("depositorName", "depositorName value is missing").notEmpty(),
+  check("Currency", "Currency value is missing").notEmpty(),
+];
+
+router.post("/", transValidate, async (req, res) => {
   const apiKey = req.headers;
 
-  if (apiKey.apikey === "pdxfGxFDYuTRt633jKi230MQUT785PkR") {
-    // const AddTransaction = new Transaction(req.body);
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(422).json({ errors: errors.array() });
+  } else {
+    if (apiKey.apikey !== "pdxfGxFDYuTRt633jKi230MQUT785PkR") {
+      res.status(500).json({
+        message: "Invalid Api Key",
+        error: "Invalid Api key",
+      });
+    }
+    const getReceipt = await Transaction.find({
+      transactionId: req.body.transactionId,
+    });
+    if (getReceipt) {
+      return res.status(201).json({
+        status: 201,
+        message: "Reciept Already Exist! you can print using tellerID",
+      });
+    }
+
+    console.log(getReceipt);
+
     try {
       const AddTransaction = new Transaction(req.body);
-
-      //check if transaction exist
-      // const getReceipt = await Transaction.find({
-      //   transactionId: req.body.transactionId,
-      // });
-      // console.log("getrecipt");
-      // // console.log(getReceipt._id);
-      // if (getReceipt) {
-      //   console.log("receipt already exist");
-      //   return res.status(201).json({
-      //     message: "receipt already exist",
-      //     status: 201,
-      //   });
-      // }
       const savedtransaction = await AddTransaction.save();
       if (savedtransaction) {
-        //send data to frontend
         res.status(200).json({
           status: 200,
           message: "transaction Receipt succesfully Saved!",
-          url: `https://ambprintsol.netlify.app/id=${savedtransaction.transactionId}`,
+          url: `https://ambprintsol.netlify.app/`,
           data: savedtransaction,
         });
         // res.sendFile(path.join(__dirname, "..", "build", "index.html"));
@@ -46,6 +67,63 @@ router.post("/", async (req, res) => {
         error: err,
       });
     }
+  }
+});
+
+//reate post
+router.post("/", transValidate, async (req, res) => {
+  console.log("headers");
+  const apiKey = req.headers;
+
+  const errors = validationResult(req);
+  console.log("my val" + errors);
+
+  if (apiKey.apikey === "pdxfGxFDYuTRt633jKi230MQUT785PkR") {
+    // const AddTransaction = new Transaction(req.body);
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
+    //check if transaction exist
+    const getReceipt = await Transaction.find({
+      transactionId: req.body.transactionId,
+    });
+    console.log(getReceipt);
+    // try {
+    //   const AddTransaction = new Transaction(req.body);
+
+    //   //check if transaction exist
+    //   // const getReceipt = await Transaction.find({
+    //   //   transactionId: req.body.transactionId,
+    //   // });
+    //   // console.log("getrecipt");
+    //   // // console.log(getReceipt._id);
+    //   // if (getReceipt) {
+    //   //   console.log("receipt already exist");
+    //   //   return res.status(201).json({
+    //   //     message: "receipt already exist",
+    //   //     status: 201,
+    //   //   });
+    //   // }
+
+    //   const savedtransaction = await AddTransaction.save();
+    //   if (savedtransaction) {
+    //     //send data to frontend
+    //     res.status(200).json({
+    //       status: 200,
+    //       message: "transaction Receipt succesfully Saved!",
+    //       url: `https://ambprintsol.netlify.app/`,
+    //       data: savedtransaction,
+    //     });
+    //     // res.sendFile(path.join(__dirname, "..", "build", "index.html"));
+    //   }
+    // } catch (err) {
+    //   // res.status(500).json(err);
+    //   console.log("error occured " + err);
+    //   res.status(500).json({
+    //     message: "error saving Receipt",
+    //     error: err,
+    //   });
+    // }
   } else {
     res.status(500).json({
       message: "Invalid Api Key",
@@ -92,10 +170,15 @@ router.get("/:transactionId", async (req, res) => {
         //send data to frontend
         res.status(200).json({
           status: 200,
-          message: "Receipt succesfully Retrieved!",
+          message: "transaction Receipt found!",
           data: getSingleReceipts,
         });
         // res.sendFile(path.join(__dirname, "..", "build", "index.html"));
+      } else {
+        res.status(404).json({
+          status: 404,
+          message: "transaction Receipt not found!",
+        });
       }
     } catch (err) {
       // res.status(500).json(err);
