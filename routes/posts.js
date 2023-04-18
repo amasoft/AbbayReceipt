@@ -3,6 +3,7 @@ const { constrainedMemory } = require("process");
 const Transaction = require("../models/Transaction");
 const path = require("path");
 const { check, validationResult } = require("express-validator");
+const jwt = require("jsonwebtoken");
 
 var transValidate = [
   check("branchID", "branchID value is missing").notEmpty(),
@@ -21,9 +22,24 @@ var transValidate = [
   check("depositorName", "depositorName value is missing").notEmpty(),
   check("Currency", "Currency value is missing").notEmpty(),
 ];
+let tokenval;
 
+router.post("/token", async (req, res) => {
+  tokenval = jwt.sign({ info: "transaction" }, "humanBakingId", {
+    expiresIn: 60,
+  });
+  return res.status(201).json({
+    status: 201,
+    message: "token generated succesfully",
+    token: tokenval,
+  });
+});
 router.post("/", transValidate, async (req, res) => {
   const apiKey = req.headers;
+  // const token = req.headers.authorization.split(" ")[1];
+  // const decodedToken = jwt.verify(token, "secretkeyappearshere");
+
+  // console.log({ token: token, status: decodedToken });
 
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -38,13 +54,12 @@ router.post("/", transValidate, async (req, res) => {
     const getReceipt = await Transaction.find({
       transactionId: req.body.transactionId,
     });
-    if (getReceipt) {
+    if (getReceipt.length > 0) {
       return res.status(201).json({
         status: 201,
         message: "Reciept Already Exist! you can print using tellerID",
       });
     }
-
     console.log(getReceipt);
 
     try {
