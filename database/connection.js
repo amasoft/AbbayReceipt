@@ -37,10 +37,10 @@ const sequelize = new Sequelize(
     },
   }
 );
-(async () => {
-  await sequelize.sync({ force: false });
-  console.log(" sync ");
-})();
+// (async () => {
+//   await sequelize.sync({ force: false });
+//   console.log(" sync ");
+// })();
 console.log(sequelize);
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
