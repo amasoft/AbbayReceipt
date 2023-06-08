@@ -13,6 +13,7 @@ app.use(express.json());
 var bodyParser = require("body-parser");
 app.use(bodyParser.json());
 dotenv.config({ path: "./config.env" });
+const port = process.env.PORT || 5000;
 
 const baseRoute = "/api/v1/";
 app.use("/api/v1/receipt", transactionRoute);
@@ -20,7 +21,7 @@ app.use(baseRoute, (req, res) => {
   res.send("welcome To AbbayBank router folder");
 });
 
-app.listen(4000, () => {
+app.listen(port, () => {
   console.log("connection succesful");
 });
 module.exports = app;
