@@ -1,60 +1,69 @@
-const mongoose = require("mongoose");
-const receiptSchema = new mongoose.Schema(
-  {
-    branchID: {
-      type: String,
-      // required: [true, "please provide branch id"],
+module.exports = (sequelize, Sequelize) => {
+  const Customer_Receipt = sequelize.define(
+    "Customers_Receipt",
+    {
+      branchCode: {
+        type: Sequelize.STRING,
+      },
+      branchName: {
+        type: Sequelize.STRING,
+      },
+      transactionId: {
+        type: Sequelize.STRING,
+      },
+      transactionDate: {
+        type: Sequelize.STRING,
+      },
+      accountNumber: {
+        type: Sequelize.STRING,
+      },
+      accountName: {
+        type: Sequelize.STRING,
+      },
+      transactionDescription: {
+        type: Sequelize.STRING,
+      },
+      amountInWords: {
+        type: Sequelize.STRING,
+      },
+      amountInNumbers: {
+        type: Sequelize.STRING,
+      },
+      tellerId: {
+        type: Sequelize.STRING,
+      },
+      Currency: {
+        type: Sequelize.STRING,
+      },
+      depositorName: {
+        type: Sequelize.STRING,
+      },
+      dateAdded: {
+        type: Sequelize.STRING,
+      },
+      status: {
+        type: Sequelize.STRING,
+      },
+      benefactor: {
+        type: Sequelize.STRING,
+      },
+      chequeNumber: {
+        type: Sequelize.STRING,
+      },
+      mcNumber: {
+        type: Sequelize.STRING,
+      },
+      created_at: {
+        type: Sequelize.STRING,
+      },
+      transactiontype: {
+        type: Sequelize.STRING,
+      },
     },
-    branchName: {
-      type: String,
-      required: [true, "please provide branch Name"],
-    },
-    transactionId: {
-      type: String,
-      required: [true, "please provide transcation Id"],
-      unique: true,
-    },
-    transactionDate: {
-      type: String,
-      required: [true, "please provide transcation Date"],
-    },
-    accountNumber: {
-      type: String,
-      required: [true, "please provide account Number"],
-      min: 10,
-      max: 10,
-    },
-    accountName: {
-      type: String,
-      required: [true, "please provide account Name"],
-    },
-    transactionDescription: {
-      type: String,
-      required: [true, "please provide Description of transaction"],
-    },
-    amountInWords: {
-      type: String,
-      required: [true, "please provide the amount in words"],
-    },
-    amountInNumbers: {
-      type: String,
-      required: [true, "please provide the amount in Numbers"],
-    },
-    Currency: {
-      type: String,
-      required: [true, "please provide the currency"],
-    },
-    depositorName: {
-      type: String,
-      required: [true, "please provide the depositor Name"],
-    },
-    tellerId: {
-      type: String,
-      required: [true, "please provide the tellerId"],
-    },
-  },
-  {
-    timestamps: true,
-  }
-);
-module.exports = mongoose.model("Customer_Receipt", receiptSchema);
+    {
+      timestamps: false,
+    }
+  );
+
+  return Customer_Receipt;
+};

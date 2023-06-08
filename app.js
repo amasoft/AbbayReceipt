@@ -2,7 +2,7 @@
 const express = require("express");
 const app = express();
 const dotenv = require("dotenv");
-const transactionRoute = require("./routes/posts");
+const transactionRoute = require("./routes/receiptRoutes");
 const cors = require("cors");
 const path = require("path");
 app.use(express.static(path.join(__dirname, "..", "build")));
@@ -12,13 +12,15 @@ app.use(cors({ origin: true }));
 app.use(express.json());
 var bodyParser = require("body-parser");
 app.use(bodyParser.json());
-dotenv.config();
 dotenv.config({ path: "./config.env" });
 
 const baseRoute = "/api/v1/";
 app.use("/api/v1/receipt", transactionRoute);
 app.use(baseRoute, (req, res) => {
-  res.send("welcome from router folder");
+  res.send("welcome To AbbayBank router folder");
 });
 
+app.listen(4000, () => {
+  console.log("connection succesful");
+});
 module.exports = app;
