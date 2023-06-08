@@ -32,6 +32,7 @@ const sequelize = new Sequelize(
       options: {
         requestTimeout: 120000,
         enableArithAbort: true,
+        encrypt: true,
       },
     },
   }
