@@ -2,10 +2,10 @@
   "name": "api",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
     "start": "nodemon app.js",
-    "start:prod": "Set NODE_ENV=production & node server.js"
+    "start:prod": "Set NODE_ENV=production & node app.js"
   },
   "author": "AbbayMortage",
   "license": "ISC",
