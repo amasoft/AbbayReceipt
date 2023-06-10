@@ -46,7 +46,7 @@ exports.addRecipt = async (req, res) => {
           status: 200,
           transactionType: "Deposit",
           message: "transaction Receipt succesfully Saved!",
-          url: `https://ambprintsol.netlify.app/receipts/${req.body.transactionId}`,
+          url: `https://ambprintsol.netlify.app/receipt/${req.body.transactionId}`,
         });
       }
     }
@@ -164,7 +164,7 @@ exports.updateStatus = async (req, res) => {
       message: "update  succesfully!",
     });
   } else {
-    return res.status(200).json({
+    return res.status(500).json({
       status: 500,
       message: "Error Updating receipt!",
     });
