@@ -87,7 +87,7 @@ exports.getReceiptByTransactionId = async (req, res) => {
 };
 
 exports.getAllReceipts = async (req, res) => {
-  const { tellerId, branchCode } = req.body;
+  const { tellerId, branchCode } = req.query;
   try {
     const data = await customer_receipt.findAndCountAll({
       where: {
