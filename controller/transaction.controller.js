@@ -113,7 +113,7 @@ exports.getAllReceipts = async (req, res) => {
     // }
   } catch (error) {
     res.send({
-      message: "Error retrieving Tutorial with id=",
+      message: "Error retrieving receipt",
       error: error,
     });
   }
