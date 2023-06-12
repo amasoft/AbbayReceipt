@@ -95,7 +95,7 @@ exports.getAllReceipts = async (req, res) => {
         branchCode: branchCode,
         transactiontype: "Deposit",
         created_at: {
-          [Op.gte]: moment().subtract(90, "days").format("YYYY-MM-DD hh:mm:ss"),
+          [Op.gte]: moment().subtract(3, "days").format("YYYY-MM-DD hh:mm:ss"),
         },
       },
     });
