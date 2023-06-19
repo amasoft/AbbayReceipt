@@ -1,11 +1,11 @@
-# AbbayReceipt
-**Show User**
+# AbbeyReceipt API Documentation
+**Show Transaction**
 ----
-  Returns json data about a single user.
+  Returns json data about a single transaction.
 
 * **URL**
 
-  /users/:id
+  /receipt/:transactions
 
 * **Method:**
 
@@ -15,7 +15,7 @@
 
    **Required:**
  
-   `id=[integer]`
+   `transactions=[integer]`
 
 * **Data Params**
 
@@ -24,18 +24,15 @@
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Content:** `{ id : 12, name : "Michael Bloom" }`
+    **data:** `{ id : 12, branchCode : "Aty-100"... }`
+    
  
 * **Error Response:**
 
   * **Code:** 404 NOT FOUND <br />
-    **Content:** `{ error : "User doesn't exist" }`
+    **Content:** `{ error : "No receipt found" }`
 
-  OR
-
-  * **Code:** 401 UNAUTHORIZED <br />
-    **Content:** `{ error : "You are unauthorized to make this request." }`
-
+  
 * **Sample Call:**
 
   ```javascript
