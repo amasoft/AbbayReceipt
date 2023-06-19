@@ -61,11 +61,13 @@
 *  **URL Params**
 
    **Required:**
+   
   `None`    
 
 * **Data Params**
 
   `branchCode=[integer]`
+  
   `tellerId=[integer]`
 
 * **Success Response:**
