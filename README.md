@@ -48,7 +48,7 @@
   
   **Show Payment History**
 ----
-  Returns json data about about payment history for three(3) days associated  to the a branch with respect to  teller that handled the transaction.
+  Returns json data about payment history for three(3) days associated  to a branch with respect to the teller that handled the transaction.
 
 * **URL**
 
