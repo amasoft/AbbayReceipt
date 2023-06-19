@@ -72,15 +72,15 @@
 
 * **Success Response:**
 
-  * **Code:** 200 <br />
-    **message:** `{Receipts succesfully Retrieved!}`
-    **data:** `[{ id : 12, transactionId : "8989898811"... },{ id : 13, branchCode : "8989898844"... }]`
+  * **Code:** 200 <br />,
+     **Message:** "Receipts succesfully Retrieved!",
+    **data:** `[{ id : 12, branchCode : "Aty-100",tellerId:"Aty-139",transactionId:"8989898811"... },{ id : 12, branchCode : "Aty-100",tellerId:"Aty-139",transactionId:"8989892211"... }]`
     
  
 * **Error Response:**
 
   * **Code:** 404 NOT FOUND <br />
-    **Content:** `{ error : " Receipts Not found!" }`
+    **Content:** `{ error : "No receipt found" }`
 
   
 * **Sample Call:**
