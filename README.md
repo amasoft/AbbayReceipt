@@ -52,21 +52,21 @@
 
 * **URL**
 
-  /receipt/:transactionId
+  /receipt/allTransation
 
 * **Method:**
 
-  `GET`
+  `POST`
   
 *  **URL Params**
 
    **Required:**
- 
-   `transactions=[integer]`
+  `None`    
 
 * **Data Params**
 
-  None
+  `branchCode=[integer]`
+  `tellerId=[integer]`
 
 * **Success Response:**
 
