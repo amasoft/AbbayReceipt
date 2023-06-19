@@ -74,13 +74,14 @@
 
   * **Code:** 200 <br />,
      **Message:** "Receipts succesfully Retrieved!",
-    **data:** `[{ id : 12, branchCode : "Aty-100",tellerId:"Aty-139",transactionId:"8989898811"... },{ id : 12, branchCode : "Aty-100",tellerId:"Aty-139",transactionId:"8989892211"... }]`
+     **data:** `[{ id : 12, branchCode : "Aty-100",tellerId:"Aty-139",transactionId:"8989898811"... },
+      { id : 12, branchCode : "Aty-100",tellerId:"Aty-139",transactionId:"8989892211"... }]`
     
  
 * **Error Response:**
 
   * **Code:** 404 NOT FOUND <br />
-    **Content:** `{ error : "No receipt found" }`
+    **Content:** `{ error : "Receipts not found" }`
 
   
 * **Sample Call:**
