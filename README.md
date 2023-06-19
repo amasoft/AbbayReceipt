@@ -5,7 +5,7 @@
 
 * **URL**
 
-  /receipt/:transactions
+  /receipt/:transactionId
 
 * **Method:**
 
