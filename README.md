@@ -116,38 +116,34 @@
 
 * **Data Params**
 
-  `branchCode=[String]`
+  `branchCode=[String]` [**Required:**]
 
-  `branchName=[String]`
+  `branchName=[String]` [**Required:**]
 
-  `benefactor=[String]`
+  `benefactor=[String]` [**Required:**]
 
-  `transactionId=[integer]`
+  `transactionId=[integer]` [**Required:**]
 
-  `transactionDate=[date]`
+  `transactionDate=[date]`  [**Required:**]
 
-  `amountInWords=[String]`
+  `amountInWords=[String]`  [**Required:**]
 
-  `amountInNumbers=[integer]`
+  `amountInNumbers=[integer]` [**Required:**]
   
-  `transactionDescription=[string]`
+  `transactionDescription=[string]` [**Required:**]
 
-  `accountNumber=[string]`
+  `accountNumber=[string]`  [**Required:**]
 
- `accountName=[string]`
+ `accountName=[string]`   [**Required:**]
  
- `depositorName=[string]`
+ `depositorName=[string]`  [**Required:**]
  
- `tellerId=[string]`
+ `tellerId=[string]`    [**Required:**]
  
- `Currency=[string]`
+ `Currency=[string]`   [**Required:**]
  
  `status=[string]`
- 
- `transactiontype=[string]`
- 
- `mcNumber=[string]`
- 
+   
  `chequeNumber=[string]`
 
 * **Success Response:**
@@ -198,17 +194,17 @@
 
   `branchCode=[String]`  [**Required:**]
 
-  `branchName=[String]`
+  `branchName=[String]`   [**Required:**]
 
   `benefactor=[String]`
 
-  `transactionId=[integer]`
+  `transactionId=[integer]` [**Required:**]
 
-  `transactionDate=[date]`
+  `transactionDate=[date]` [**Required:**]
 
-  `amountInWords=[String]`
+  `amountInWords=[String]`  [**Required:**]
 
-  `amountInNumbers=[integer]`
+  `amountInNumbers=[integer]`  [**Required:**]
   
   `transactionDescription=[string]`
 
@@ -216,17 +212,11 @@
  
   `depositorName=[string]`
  
-   `tellerId=[string]`
+   `tellerId=[string]`   [**Required:**]
    
-   `Currency=[string]`
-   
-   `status=[string]`
-   
-   `transactiontype=[string]`
-   
-   `mcNumber=[string]`
-   
-   `chequeNumber=[string]`
+   `Currency=[string]`  [**Required:**]
+  
+   `chequeNumber=[string]`  [**Required:**]
 
 * **Success Response:**
 
