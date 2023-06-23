@@ -146,16 +146,16 @@
 
 * **Success Response:**
 
-  * **Code:** 200 <br />,
-     **Message:** "Receipts succesfully Retrieved!",
-     **data:** `[{ id : 12, branchCode : "Aty-100",tellerId:"Aty-139",transactionId:"8989898811"... },
-      { id : 12, branchCode : "Aty-100",tellerId:"Aty-139",transactionId:"8989892211"... }]`
+  * **Code:** 201 <br />,
+     **Message:** "transaction Receipt succesfully Saved!",
+     **url:** "https://ambprintsol.netlify.app/cheque/transactionId"`,
     
  
 * **Error Response:**
 
-  * **Code:** 404 NOT FOUND <br />
-    **Content:** `{ error : "Receipts not found" }`
+  * **Code:** 500 <br />,
+    **Message:** `{ "error saving Receipt" }`,
+    **error**: err
 
   
 * **Sample Call:**
@@ -216,7 +216,18 @@
   
    `chequeNumber=[string]`  [**Required:**]
 
-* **Success Response:**
+  * **Success Response:**
+  
+  * **Code:** 201 <br />,
+       **Message:** "transaction Receipt succesfully Saved!",
+       **url:** "https://ambprintsol.netlify.app/cheque/transactionId"`,
+      
+   
+  * **Error Response:**
+  
+    * **Code:** 500 <br />,
+      **Message:** `{ "error saving Receipt" }`,
+      **error**: err
 
   * **Code:** 200 <br />,
      **Message:** "Receipts succesfully Retrieved!",
