@@ -196,7 +196,7 @@
 
 * **Data Params**
 
-  `branchCode=[String]`
+  `branchCode=[String]`  [**Required:**]
 
   `branchName=[String]`
 
@@ -213,22 +213,20 @@
   `transactionDescription=[string]`
 
   `accountNumber=[string]`
-
- `accountName=[string]`
  
- `depositorName=[string]`
+  `depositorName=[string]`
  
- `tellerId=[string]`
- 
- `Currency=[string]`
- 
- `status=[string]`
- 
- `transactiontype=[string]`
- 
- `mcNumber=[string]`
- 
- `chequeNumber=[string]`
+   `tellerId=[string]`
+   
+   `Currency=[string]`
+   
+   `status=[string]`
+   
+   `transactiontype=[string]`
+   
+   `mcNumber=[string]`
+   
+   `chequeNumber=[string]`
 
 * **Success Response:**
 
