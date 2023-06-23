@@ -133,18 +133,16 @@
   `transactionDescription=[string]` [**Required:**]
 
   `accountNumber=[string]`  [**Required:**]
-
- `accountName=[string]`   [**Required:**]
  
- `depositorName=[string]`  [**Required:**]
- 
- `tellerId=[string]`    [**Required:**]
- 
- `Currency=[string]`   [**Required:**]
- 
- `status=[string]`
+   `depositorName=[string]`  [**Required:**]
    
- `chequeNumber=[string]`
+   `tellerId=[string]`    [**Required:**]
+   
+   `Currency=[string]`   [**Required:**]
+   
+   `status=[string]`
+     
+   `chequeNumber=[string]`
 
 * **Success Response:**
 
