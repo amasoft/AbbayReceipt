@@ -86,7 +86,8 @@
   
 * **Sample Call:**
 
-  ``` axios.get('https://abbayreceipts.onrender.com/api/v1/receipt/',{
+  ```
+  axios.get('https://abbayreceipts.onrender.com/api/v1/receipt/',{
           params: {
             "branchCode": branchCode,
             "tellerId": tellerId
@@ -98,6 +99,7 @@
           
         })
     };
+
   ```
 **3 Save Deposit transaction **
 ----
