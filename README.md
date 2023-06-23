@@ -1,5 +1,5 @@
 # AbbeyReceipt API Documentation
-**Show Transaction**
+**1 Show Transaction Details**
 ----
   Returns json data about a single transaction.
 
@@ -46,7 +46,7 @@
     });
   ```
   
-  **Show Payment History**
+  **2 Show Payment History**
 ----
   Returns json data about payment history for three(3) days associated  to a branch with respect to the teller that handled the transaction.
 
@@ -96,3 +96,59 @@
       }
     });
   ```
+**2 Save Deposit transaction **
+----
+  save deposit transaction to the Database.
+
+* **URL**
+
+  /receipt/
+
+* **Method:**
+
+  `POST`
+  
+*  **URL Params**
+
+   **Required:**
+   
+    None    
+
+* **Data Params**
+
+  `branchCode=[integer]`
+  `branchCode=[integer]`
+  `branchCode=[integer]`
+  `branchCode=[integer]`
+  `branchCode=[integer]`
+  `branchCode=[integer]`
+  
+  `tellerId=[integer]`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />,
+     **Message:** "Receipts succesfully Retrieved!",
+     **data:** `[{ id : 12, branchCode : "Aty-100",tellerId:"Aty-139",transactionId:"8989898811"... },
+      { id : 12, branchCode : "Aty-100",tellerId:"Aty-139",transactionId:"8989892211"... }]`
+    
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{ error : "Receipts not found" }`
+
+  
+* **Sample Call:**
+
+  ```javascript
+    $.ajax({
+      url: "/users/1",
+      dataType: "json",
+      type : "GET",
+      success : function(r) {
+        console.log(r);
+      }
+    });
+  ```
+
