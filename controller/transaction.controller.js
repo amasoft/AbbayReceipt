@@ -33,17 +33,16 @@ exports.addRecipt = async (req, res) => {
     if (addTransaction) {
       if (req.body.chequeNumber) {
         //return check enpoints
-        res.status(200).json({
-          status: 200,
+        res.status(201).json({
+          status: 201,
           transactionType: "Cheque Book",
           message: "transaction Receipt succesfully Saved!",
-          // url: `http://localhost:3000/cheque/${req.body.transactionId}`,
           url: `https://ambprintsol.netlify.app/cheque/${req.body.transactionId}`,
         });
       } else {
         //return deposite enpoints
-        res.status(200).json({
-          status: 200,
+        res.status(201).json({
+          status: 201,
           transactionType: "Deposit",
           message: "transaction Receipt succesfully Saved!",
           url: `https://ambprintsol.netlify.app/receipt/${req.body.transactionId}`,
@@ -51,8 +50,8 @@ exports.addRecipt = async (req, res) => {
       }
     }
   } catch (err) {
-    console.log("error occured " + err);
     res.status(500).json({
+      status: 500,
       message: "error saving Receipt",
       error: err,
     });
@@ -69,12 +68,11 @@ exports.getReceiptByTransactionId = async (req, res) => {
       return res.status(200).json({
         status: 200,
         message: "Receipt succesfully Retrieved!",
-        url: `http://localhost:3000/`,
         data: result,
       });
     }
     return res.status(401).json({
-      status: 401,
+      status: 404,
       message: "No receipt found!",
     });
   } catch (error) {
@@ -87,7 +85,8 @@ exports.getReceiptByTransactionId = async (req, res) => {
 };
 
 exports.getAllReceipts = async (req, res) => {
-  const { tellerId, branchCode } = req.query;
+  // const { tellerId, branchCode } = req.query;
+  const { tellerId, branchCode } = req.body;
   try {
     const data = await customer_receipt.findAndCountAll({
       where: {
@@ -106,11 +105,10 @@ exports.getAllReceipts = async (req, res) => {
         total: data.count,
         data: data.rows,
       });
-    // else {
-    return res.status(500).json({
+    return res.status(404).json({
+      status: 404,
       message: "Receipts not found",
     });
-    // }
   } catch (error) {
     res.send({
       message: "Error retrieving receipt",
@@ -122,31 +120,6 @@ exports.getAllReceipts = async (req, res) => {
 exports.updateStatus = async (req, res) => {
   //get the id of the transaction
   const { transactionId, status } = req.body;
-
-  // await customer_receipt
-  //   .find({
-  //     where: {
-  //       transactionId: transactionId,
-  //     },
-  //   })
-  //   .on("success", function (data) {
-  //     if (data) {
-  //       customer_receipt
-  //         .update({
-  //           status: status,
-  //         })
-  //         .success(function () {
-  //           res.send.json({
-  //             message: "upadte succesfull",
-  //           });
-  //         })
-  //         .error(function () {
-  //           res.send.json({
-  //             message: "upadte not succesfull",
-  //           });
-  //         });
-  //     }
-  //   });
 
   const Isupdate = await customer_receipt.update(
     {
@@ -178,6 +151,6 @@ const generatemcNumber = () => {
   var month = moment().format("MM");
   var seconds = moment().format("ss");
   const mcNUmber = year + month + seconds + val;
-  console.log(00, mcNUmber);
+  console.log(0, mcNUmber);
   return mcNUmber;
 };
