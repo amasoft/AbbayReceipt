@@ -33,19 +33,6 @@
     **Content:** `{ error : "No receipt found" }`
 
   
-* **Sample Call:**
-
-  ```javascript
-    $.ajax({
-      url: "/users/1",
-      dataType: "json",
-      type : "GET",
-      success : function(r) {
-        console.log(r);
-      }
-    });
-  ```
-  
   **2 Show Payment History**
 ----
   Returns json data about payment history for three(3) days associated  to a branch with respect to the teller that handled the transaction.
@@ -163,21 +150,9 @@
     **error**: err
 
   
-* **Sample Call:**
-
-  ```javascript
-    $.ajax({
-      url: "/users/1",
-      dataType: "json",
-      type : "GET",
-      success : function(r) {
-        console.log(r);
-      }
-    });
-  ```
 **4 Save MC transaction **
 ----
-  save deposit transaction to the Database.
+  save MC transaction to the Database.
 
 * **URL**
 
@@ -225,7 +200,7 @@
   
   * **Code:** 201 <br />,
        **Message:** "transaction Receipt succesfully Saved!",
-       **url:** "https://ambprintsol.netlify.app/cheque/transactionId"`,
+       **url:** "https://ambprintsol.netlify.app/receipt/transactionId"`,
       
    
   * **Error Response:**
@@ -234,15 +209,41 @@
       **Message:** `{ "error saving Receipt" }`,
       **error**: err
 
-* **Sample Call:**
+**4 update MC printer Status **
+----
+  updates the MC status as printed to avooid over printing
 
-  ```javascript
-    $.ajax({
-      url: "/users/1",
-      dataType: "json",
-      type : "GET",
-      success : function(r) {
-        console.log(r);
-      }
-    });
-  ```
+* **URL**
+
+  /receipt/
+
+* **Method:**
+
+  `put`
+  
+*  **URL Params**
+
+   **Required:**
+   
+    None    
+
+* **Data Params**
+
+
+  `transactionId=[integer]` [**Required:**]
+  
+   `status=[string]`  [**Required:**]
+
+  * **Success Response:**
+  
+  * **Code:** 200 <br />,
+       **Message:** "update  succesfully!",
+      
+   
+  * **Error Response:**
+  
+    * **Code:** 500 <br />,
+      **Message:** `Error Updating receipt!`,
+
+
+
