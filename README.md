@@ -86,15 +86,18 @@
   
 * **Sample Call:**
 
-  ```javascript
-    $.ajax({
-      url: "/users/1",
-      dataType: "json",
-      type : "GET",
-      success : function(r) {
-        console.log(r);
-      }
-    });
+  ``` axios.get('https://abbayreceipts.onrender.com/api/v1/receipt/',{
+          params: {
+            "branchCode": branchCode,
+            "tellerId": tellerId
+          }
+        })
+        .then(res=>{
+          
+        }).catch(err=>{
+          
+        })
+    };
   ```
 **3 Save Deposit transaction **
 ----
